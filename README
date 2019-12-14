@@ -1,0 +1,3 @@
+- Change the ID of the wifi AP interface in both files
+- Change the ID of the output interface in AP_creator.sh
+
