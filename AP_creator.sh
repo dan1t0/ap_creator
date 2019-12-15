@@ -1,12 +1,24 @@
 #!/bin/bash
 
-#Change it
+#Change it if you want
 if_out="eth0"
 if_wifi="wlx14cc201b721e"
-
-
 ip_address="192.168.10.1"
+ip_first=`echo ${ip_address} | cut -d"." -f1,2,3`
 masq="255.255.255.0"
+
+
+#if AP interface is set as parameter
+if [ -n "$1" ]
+    then
+	if_wifi=${1}
+fi
+
+#Generating configuration files
+sed -i "s/interface.*/interface=${if_wifi}/" ap.conf
+sed -i "s/interface.*/interface=${if_wifi}/" dnsmasq.conf
+sed -i "s/dhcp-range.*/dhcp-range=${ip_first}.100,${ip_first}.200,12h/" dnsmasq.conf
+
 conf_file="ap.conf"
 pass=$(cat $conf_file | grep wpa_passphrase | cut -d"=" -f2)
 ssid=$(cat $conf_file | grep ^ssid | cut -d"=" -f2)
@@ -43,7 +55,6 @@ else
 	echo "  - DHCP server: none"
 	echo "  - DNS server: none"
 fi
-
 
 
 echo -n "-> Enabling NAT... "
@@ -90,4 +101,3 @@ echo "done"
 echo ""
 
 echo "Finish!"
-
