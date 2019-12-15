@@ -1,6 +1,55 @@
 ./AP_creator.sh
-
 ./AP_creator.sh wlan0 #where wlan0 is the AP interface
+
+Example:
+*******
+
+
+
+./AP_creator.sh wlx10feed1d7066
+
+-> Seting IP Forwarding... done
+-> Configuring WiFi interface... done
+-> Creating AP
+  - SSID: Danito 
+  - Password: qwerty1234 
+  - AP source: 192.168.10.1 / 255.255.255.0 
+  - DHCP server: UP
+  - DNS server: UP
+-> Enabling NAT... done
+-> Unlocking wifi iface... done
+
+
+**********  hostapd starts here  **********
+Configuration file: ap.conf
+Using interface wlx10feed1d7066 with hwaddr 06:68:d5:fc:18:64 and ssid "Danito"
+wlx10feed1d7066: interface state UNINITIALIZED->ENABLED
+wlx10feed1d7066: AP-ENABLED 
+
+
+wlx10feed1d7066: STA f4:60:e2:cf:9f:80 IEEE 802.11: authenticated
+wlx10feed1d7066: STA f4:60:e2:cf:9f:80 IEEE 802.11: associated (aid 1)
+wlx10feed1d7066: AP-STA-CONNECTED f4:60:e2:cf:9f:80
+wlx10feed1d7066: STA f4:60:e2:cf:9f:80 RADIUS: starting accounting session 35BD2C57C9CFA557
+wlx10feed1d7066: STA f4:60:e2:cf:9f:80 WPA: pairwise key handshake completed (RSN)
+wlx10feed1d7066: AP-STA-DISCONNECTED f4:60:e2:cf:9f:80
+
+
+
+^Cwlx10feed1d7066: interface state ENABLED->DISABLED
+wlx10feed1d7066: AP-DISABLED 
+wlx10feed1d7066: CTRL-EVENT-TERMINATING 
+nl80211: deinit ifname=wlx10feed1d7066 disabled_11b_rates=0
+
+
+-> Killing processes... done
+-> Unseting IP Forwarding... done
+-> Disabling wlan interface... done
+-> Flushing iptables ... done
+
+Finish!
+
+
 
 
 @dan1t0
