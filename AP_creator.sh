@@ -2,7 +2,7 @@
 
 #Change if needed
 if_out="eth0"
-if_wifi="wlx14cc201b721e"
+if_wifi="wlx10feed1d7066"
 ip_address="192.168.10.1"
 ip_first=`echo ${ip_address} | cut -d"." -f1,2,3`
 masq="255.255.255.0"
@@ -27,9 +27,11 @@ sed -i "s/ssid=.*/ssid=${ssid}/" $conf_file
 
 trap ctrl_c INT
 function ctrl_c(){
-    echo Killing processes..
-    killall dnsmasq
-    killall hostapd
+    echo
+    echo
+    echo -n "-> Killing processes... "
+    killall dnsmasq > /dev/null
+    echo "done"
 }
 
 echo -n "-> Seting IP Forwarding... "
@@ -80,11 +82,10 @@ nmcli radio wifi off
 rfkill unblock wlan
 echo "done"
 
-echo""
 echo ""
+echo ""
+echo "**********  hostapd starts here  **********"
 hostapd $conf_file
-echo ""
-echo ""
 
 echo -n "-> Unseting IP Forwarding... " 
 sysctl -w net.ipv4.ip_forward=0 > /dev/null
